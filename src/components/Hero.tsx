@@ -40,10 +40,10 @@ const Hero = () => {
           </div>
 
           <div className="relative">
-            {/* Video editor person silhouette */}
+            {/* Video editor person with new image */}
             <div className="relative w-full h-96 bg-gradient-to-t from-purple-900/40 to-transparent rounded-lg overflow-hidden">
               <img 
-                src="/lovable-uploads/cf766aa2-7b43-4b33-9c47-1fa6560356a7.png" 
+                src="/lovable-uploads/3a33e6f4-d120-4f9a-8745-bdd68ee15971.png" 
                 alt="Salem Kiddams - Video Editor"
                 className="w-full h-full object-cover opacity-80"
               />
