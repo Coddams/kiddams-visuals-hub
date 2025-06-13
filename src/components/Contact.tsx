@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Instagram, Youtube } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,14 +25,22 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-t from-purple-900/20 to-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-t from-purple-900/20 to-black relative">
+      {/* Background effects */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-60 h-60 bg-purple-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-600 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-4">I AM READY TO CONSULT YOU</h2>
+          <h2 className="text-5xl font-bold text-white mb-4 animate-fade-in">I AM READY TO CONSULT YOU</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-purple-600 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          <div>
+          {/* Contact Form - Glassmorphism */}
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Input
@@ -41,7 +49,7 @@ const Contact = () => {
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-none h-12"
+                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg h-12 transition-all duration-300 focus:shadow-lg focus:shadow-purple-500/20"
                   required
                 />
               </div>
@@ -51,38 +59,63 @@ const Contact = () => {
                   placeholder="Message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-none min-h-32 resize-none"
+                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg min-h-32 resize-none transition-all duration-300 focus:shadow-lg focus:shadow-purple-500/20"
                   required
                 />
               </div>
               <Button 
                 type="submit"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-none font-medium tracking-wider transition-all duration-300 hover:scale-105"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3 rounded-lg font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
               >
-                SEND
+                SEND MESSAGE
               </Button>
             </form>
           </div>
 
-          <div className="space-y-8">
-            <div className="flex items-center space-x-4">
-              <Phone className="text-purple-400 w-6 h-6" />
+          {/* Contact Info - Glassmorphism */}
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl space-y-8">
+            <div className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
+                <Phone className="text-purple-400 w-6 h-6" />
+              </div>
               <span className="text-white text-lg">+234 811 498 7266</span>
             </div>
-            <div className="flex items-center space-x-4">
-              <MapPin className="text-purple-400 w-6 h-6" />
-              <span className="text-white text-lg">Defense Phase 5, Lahore Pakistan</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Mail className="text-purple-400 w-6 h-6" />
+            
+            <div className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
+                <Mail className="text-purple-400 w-6 h-6" />
+              </div>
               <span className="text-white text-lg">faidayamba2002@gmail.com</span>
+            </div>
+
+            <div className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
+                <MessageCircle className="text-purple-400 w-6 h-6" />
+              </div>
+              <span className="text-white text-lg">Available 24/7 for urgent projects</span>
+            </div>
+
+            <div className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
+                <Instagram className="text-purple-400 w-6 h-6" />
+              </div>
+              <span className="text-white text-lg">Follow my creative journey</span>
+            </div>
+
+            <div className="flex items-center space-x-4 group">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
+                <Youtube className="text-purple-400 w-6 h-6" />
+              </div>
+              <span className="text-white text-lg">Check out my editing tutorials</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom right text */}
-        <div className="absolute bottom-8 right-8 transform rotate-90 origin-bottom-right hidden lg:block">
-          <span className="text-purple-400 text-sm tracking-widest">SCROLL FOR MORE</span>
+        {/* Floating WhatsApp button */}
+        <div className="fixed bottom-24 right-8 z-40">
+          <button className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 animate-pulse">
+            <MessageCircle className="text-white w-6 h-6" />
+          </button>
         </div>
       </div>
     </section>

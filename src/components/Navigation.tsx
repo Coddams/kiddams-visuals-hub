@@ -1,10 +1,16 @@
 
-import React from 'react';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 
-const Navigation = () => {
+interface NavigationProps {
+  darkMode: boolean;
+  setDarkMode: (value: boolean) => void;
+}
+
+const Navigation = ({ darkMode, setDarkMode }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
     { name: 'HOME', href: '#home' },
@@ -14,12 +20,40 @@ const Navigation = () => {
     { name: 'CONTACT', href: '#contact' }
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      // Scrollspy logic
+      const sections = navItems.map(item => item.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-purple-500/20">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-black/80 backdrop-blur-md border-b border-purple-500/20 shadow-lg' 
+        : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-white font-bold text-xl">
-            VideoAlchemist
+          <div className="text-white font-bold text-xl bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            SALEM
           </div>
           
           {/* Desktop Navigation */}
@@ -28,22 +62,34 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-purple-400 transition-colors duration-300 text-sm font-medium tracking-wider"
+                className={`text-white hover:text-purple-400 transition-all duration-300 text-sm font-medium tracking-wider relative group ${
+                  activeSection === item.href.substring(1) ? 'text-purple-400' : ''
+                }`}
               >
                 {item.name}
+                {activeSection === item.href.substring(1) && (
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-purple-600 animate-pulse"></div>
+                )}
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-purple-600 group-hover:w-full transition-all duration-300"></div>
               </a>
             ))}
           </div>
 
-          {/* Social Icons */}
-          <div className="hidden md:flex space-x-4">
-            <div className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-purple-500 transition-colors cursor-pointer">
+          {/* Dark Mode Toggle & Social Icons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110"
+            >
+              {darkMode ? <Sun size={16} className="text-white" /> : <Moon size={16} className="text-white" />}
+            </button>
+            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50">
               <span className="text-white text-xs">f</span>
             </div>
-            <div className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-purple-500 transition-colors cursor-pointer">
+            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50">
               <span className="text-white text-xs">in</span>
             </div>
-            <div className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-purple-500 transition-colors cursor-pointer">
+            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50">
               <span className="text-white text-xs">ig</span>
             </div>
           </div>
@@ -61,7 +107,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/95 absolute top-16 left-0 w-full border-b border-purple-500/20">
+          <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-16 left-0 w-full border-b border-purple-500/20">
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
                 <a
