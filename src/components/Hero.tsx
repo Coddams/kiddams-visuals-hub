@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-black via-purple-900/20 to-black relative overflow-hidden flex items-center">
+    <section id="home" className="min-h-screen bg-black relative overflow-hidden flex items-center">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500/20 rounded-lg rotate-12 animate-pulse"></div>
