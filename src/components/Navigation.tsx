@@ -1,13 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
-interface NavigationProps {
-  darkMode: boolean;
-  setDarkMode: (value: boolean) => void;
-}
-
-const Navigation = ({ darkMode, setDarkMode }: NavigationProps) => {
+const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,8 +47,12 @@ const Navigation = ({ darkMode, setDarkMode }: NavigationProps) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-white font-bold text-xl bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-            SALEM
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/9d5c9e38-2706-4fc7-90a0-461489987bee.png" 
+              alt="saltyyAE Logo" 
+              className="h-10 w-auto"
+            />
           </div>
           
           {/* Desktop Navigation */}
@@ -75,14 +74,8 @@ const Navigation = ({ darkMode, setDarkMode }: NavigationProps) => {
             ))}
           </div>
 
-          {/* Dark Mode Toggle & Social Icons */}
+          {/* Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110"
-            >
-              {darkMode ? <Sun size={16} className="text-white" /> : <Moon size={16} className="text-white" />}
-            </button>
             <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50">
               <span className="text-white text-xs">f</span>
             </div>

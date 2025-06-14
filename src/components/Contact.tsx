@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MessageCircle, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Instagram } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -101,21 +101,7 @@ const Contact = () => {
               </div>
               <span className="text-white text-lg">Follow my creative journey</span>
             </div>
-
-            <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
-                <Youtube className="text-purple-400 w-6 h-6" />
-              </div>
-              <span className="text-white text-lg">Check out my editing tutorials</span>
-            </div>
           </div>
-        </div>
-
-        {/* Floating WhatsApp button */}
-        <div className="fixed bottom-24 right-8 z-40">
-          <button className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 animate-pulse">
-            <MessageCircle className="text-white w-6 h-6" />
-          </button>
         </div>
       </div>
     </section>
