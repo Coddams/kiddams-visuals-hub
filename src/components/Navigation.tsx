@@ -46,12 +46,12 @@ const Navigation = () => {
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <img 
               src="/lovable-uploads/9d5c9e38-2706-4fc7-90a0-461489987bee.png" 
               alt="saltyyAE Logo" 
-              className="h-10 w-auto"
+              className="h-16 w-auto filter brightness-150 contrast-125"
             />
           </div>
           
@@ -100,7 +100,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-16 left-0 w-full border-b border-purple-500/20">
+          <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-20 left-0 w-full border-b border-purple-500/20">
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
                 <a
