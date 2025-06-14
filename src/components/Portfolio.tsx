@@ -60,9 +60,14 @@ const Portfolio = () => {
                 
                 {/* Play button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-purple-500/80 group-hover:scale-110 transition-all duration-500 cursor-pointer border border-white/30 group-hover:border-purple-400/50">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-purple-500/80 group-hover:scale-110 transition-all duration-500 cursor-pointer border border-white/30 group-hover:border-purple-400/50 group-hover:shadow-lg group-hover:shadow-purple-500/50">
                     <Play className="text-white w-6 h-6 ml-1" />
                   </div>
+                </div>
+
+                {/* Neon glow effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 rounded-xl blur-sm"></div>
                 </div>
               </div>
               

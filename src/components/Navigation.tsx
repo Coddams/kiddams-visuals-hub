@@ -1,8 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 
-const Navigation = () => {
+interface NavigationProps {
+  darkMode: boolean;
+  setDarkMode: (value: boolean) => void;
+}
+
+const Navigation = ({ darkMode, setDarkMode }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,13 +51,9 @@ const Navigation = () => {
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/9d5c9e38-2706-4fc7-90a0-461489987bee.png" 
-              alt="saltyyAE Logo" 
-              className="h-16 w-auto filter brightness-150 contrast-125"
-            />
+        <div className="flex justify-between items-center h-16">
+          <div className="text-white font-bold text-xl bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            SALEM
           </div>
           
           {/* Desktop Navigation */}
@@ -74,8 +75,14 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Social Icons */}
+          {/* Dark Mode Toggle & Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110"
+            >
+              {darkMode ? <Sun size={16} className="text-white" /> : <Moon size={16} className="text-white" />}
+            </button>
             <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer hover:shadow-lg hover:shadow-purple-500/50">
               <span className="text-white text-xs">f</span>
             </div>
@@ -100,7 +107,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-20 left-0 w-full border-b border-purple-500/20">
+          <div className="md:hidden bg-black/95 backdrop-blur-md absolute top-16 left-0 w-full border-b border-purple-500/20">
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
                 <a
