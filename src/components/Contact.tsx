@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MessageCircle, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Instagram } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +49,7 @@ const Contact = () => {
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg h-12 transition-all duration-300 focus:shadow-lg focus:shadow-purple-500/20"
+                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg h-12 transition-all duration-300"
                   required
                 />
               </div>
@@ -59,13 +59,13 @@ const Contact = () => {
                   placeholder="Message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg min-h-32 resize-none transition-all duration-300 focus:shadow-lg focus:shadow-purple-500/20"
+                  className="bg-white/10 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-lg min-h-32 resize-none transition-all duration-300"
                   required
                 />
               </div>
               <Button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3 rounded-lg font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3 rounded-lg font-medium tracking-wider transition-all duration-300 hover:scale-105"
               >
                 SEND MESSAGE
               </Button>
@@ -101,21 +101,7 @@ const Contact = () => {
               </div>
               <span className="text-white text-lg">Follow my creative journey</span>
             </div>
-
-            <div className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/40 transition-all duration-300">
-                <Youtube className="text-purple-400 w-6 h-6" />
-              </div>
-              <span className="text-white text-lg">Check out my editing tutorials</span>
-            </div>
           </div>
-        </div>
-
-        {/* Floating WhatsApp button */}
-        <div className="fixed bottom-24 right-8 z-40">
-          <button className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 animate-pulse">
-            <MessageCircle className="text-white w-6 h-6" />
-          </button>
         </div>
       </div>
     </section>
