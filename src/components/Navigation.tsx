@@ -49,9 +49,9 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/cf766aa2-7b43-4b33-9c47-1fa6560356a7.png" 
+              src="/lovable-uploads/a9877b35-2aaa-4c4e-8174-ad4cc1058d33.png" 
               alt="saltyyAE Logo"
-              className="h-10 w-auto brightness-150 contrast-125"
+              className="h-12 w-auto"
             />
           </div>
           
