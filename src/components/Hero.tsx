@@ -9,6 +9,7 @@ const Hero = () => {
   const typeTexts = ['Artists', 'Podcasts', 'YouTubers', 'Startups', 'Creators'];
 
   useEffect(() => {
+    // Sync with the bounce animation cycle (2 seconds per cycle)
     const interval = setInterval(() => {
       setCurrentTypeText((prev) => (prev + 1) % typeTexts.length);
     }, 2000);
@@ -18,7 +19,7 @@ const Hero = () => {
 
   return (
     <>
-      <section id="home" className="min-h-screen bg-black relative overflow-hidden flex items-center">
+      <section id="home" className="min-h-screen bg-black relative overflow-hidden flex items-center pt-20">
         {/* Video Background Effect */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-purple-900/30"></div>
@@ -98,11 +99,21 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
               
-              {/* Floating icons */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg flex items-center justify-center animate-bounce cursor-pointer">
+              {/* Floating icons synchronized with text changes */}
+              <div 
+                className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg flex items-center justify-center cursor-pointer"
+                style={{
+                  animation: 'bounce 2s infinite'
+                }}
+              >
                 <span className="text-white font-bold text-xl">Pr</span>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center animate-bounce delay-1000 cursor-pointer">
+              <div 
+                className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center cursor-pointer"
+                style={{
+                  animation: 'bounce 2s infinite 1s'
+                }}
+              >
                 <span className="text-white font-bold">Ae</span>
               </div>
             </div>
