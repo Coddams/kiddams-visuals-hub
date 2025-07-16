@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import FadeInOnScroll from "../components/ui/FadeInOnScroll";
+
 
 const Testimonials = () => {
   const testimonials = [
@@ -48,6 +50,7 @@ const Testimonials = () => {
   };
 
   return (
+        <FadeInOnScroll direction="bottom">
     <section id="testimonials" className="py-20 bg-black relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 opacity-10">
@@ -117,6 +120,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
+  </FadeInOnScroll>
   );
 };
 

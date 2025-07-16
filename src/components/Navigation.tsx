@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { FaHamburger, FaBehance, FaInstagram, FaTwitter, FaEnvelope, FaBars, FaTimes} from "react-icons/fa";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +14,13 @@ const Navigation = () => {
     { name: 'TESTIMONIALS', href: '#testimonials' },
     { name: 'CONTACT', href: '#contact' }
   ];
+
+  const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +47,14 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-black/80 backdrop-blur-md border-b border-purple-500/20 shadow-lg' 
-        : 'bg-transparent'
-    }`}>
+   <nav
+    className={`fixed top-0 w-full z-50 transition-all duration-700 ease-out transform ${
+      isMounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+    } ${isScrolled 
+      ? 'bg-black/80 backdrop-blur-md border-b border-purple-500/20 shadow-lg' 
+      : 'bg-transparent'
+    }`}
+  >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
@@ -76,16 +86,44 @@ const Navigation = () => {
 
           {/* Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer">
-              <span className="text-white text-xs">f</span>
-            </div>
-            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer">
-              <span className="text-white text-xs">in</span>
-            </div>
-            <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer">
-              <span className="text-white text-xs">ig</span>
-            </div>
+            <a
+              href="mailto:faidayamba2002@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer"
+            >
+              <FaEnvelope className="text-white w-4 h-4" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/saltyy___ae/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer"
+            >
+              <FaInstagram className="text-white w-4 h-4" />
+            </a>
+
+            <a
+              href="https://www.behance.net/joshuakiddams"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer"
+            >
+              <FaBehance className="text-white w-4 h-4" />
+            </a>
+
+            <a
+              href="https://x.com/5thCenturyStoic"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-purple-500 transition-all duration-300 hover:scale-110 cursor-pointer"
+            >
+              <FaTwitter className="text-white w-4 h-4" />
+            </a>
           </div>
+
+
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -93,7 +131,7 @@ const Navigation = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white hover:text-purple-400 transition-colors"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
         </div>

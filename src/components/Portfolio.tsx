@@ -1,30 +1,40 @@
 
 import React from 'react';
 import { Play } from 'lucide-react';
+import FadeInOnScroll from "../components/ui/FadeInOnScroll";
+
 
 const Portfolio = () => {
   const projects = [
     {
-      title: 'CASH COW',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop',
+      title: 'ANIMATED EXPLAINER',
+      image: 'YouTubeCashcow.PNG',
       category: 'YouTube Content',
-      description: 'High-converting video content designed to maximize revenue'
-    },
+      description: '2d animated explainer videos for YouTube channels',
+      embedUrl: 'https://www.youtube.com/embed/fq3uJOo6oLQ?si=QqPrF1qe5LilmjTJ" '
+   },
+   
     {
-      title: 'REEL',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop',
+      title: 'PRODUCT ADS',
+      image: 'product.PNG',
       category: 'Social Media',
-      description: 'Viral short-form content optimized for engagement'
-    },
+      description: 'Simple and professional commercial product edits',
+      embedUrl: 'https://www.youtube.com/embed/frKLyVqidYU?si=bUlMUjZL_ovWHdVJ" '
+   },
     {
-      title: 'VLOG',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop',
-      category: 'Personal Content',
-      description: 'Cinematic storytelling for personal brands'
-    }
+      title: 'REELS AND TIKTOKS',
+      image: 'REEL.PNG',
+      category: 'SOCIAL MEDIA CONTENT',
+      description: 'Flashy attention grabbing content',
+      embedUrl: '/videos/cash-cow.mp4'
+   }
   ];
 
+  const [activeProject, setActiveProject] = React.useState(null);
+
+
   return (
+        <FadeInOnScroll direction="bottom">
     <section id="portfolio" className="py-20 bg-gradient-to-b from-black to-gray-900 relative">
       {/* Background effects */}
       <div className="absolute inset-0 opacity-5">
@@ -41,45 +51,93 @@ const Portfolio = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={project.title}
-              className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:scale-105 transition-all duration-500"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/60 transition-all duration-500"></div>
-                
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-purple-500/80 group-hover:scale-110 transition-all duration-500 cursor-pointer border border-white/30 group-hover:border-purple-400/50">
-                    <Play className="text-white w-6 h-6 ml-1" />
+        {projects.map((project, index) => {
+          const direction = index === 0 ? "left" : index === 1 ? "bottom" : "right";
+
+          return (
+        <FadeInOnScroll key={project.title} direction={direction} delay={index * 0.2}>
+              <div
+                className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:scale-105 transition-all duration-500"
+              >
+                <div className="aspect-video relative overflow-hidden">
+                  <img 
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/60 transition-all duration-500"></div>
+
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Play button */}
+                  <div onClick={() => setActiveProject(project)} className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-purple-500/80 group-hover:scale-110 transition-all duration-500 cursor-pointer border border-white/30 group-hover:border-purple-400/50">
+                      <Play className="text-white w-6 h-6 ml-1" />
+                    </div>
                   </div>
                 </div>
+
+                <div className="p-6 relative">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-purple-400 text-sm mb-2">{project.category}</p>
+                  <p className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    {project.description}
+                  </p>
+                </div>
               </div>
-              
-              <div className="p-6 relative">
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-purple-400 text-sm mb-2">{project.category}</p>
-                <p className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+            </FadeInOnScroll>
+          );
+        })}
       </div>
+        <div className="mt-16 text-center">
+          <p className="text-gray-300 text-lg">
+            Want to see more of my work? Check out my full portfolio on{" "}
+            <a 
+              href="https://www.behance.net/joshuakiddams" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-purple-400 hover:underline font-semibold"
+            >
+              Behance
+            </a>.
+          </p>
+        </div>
+
+      </div>
+      {activeProject && (
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center">
+    <div className="bg-gray-900 p-6 rounded-xl max-w-3xl w-full relative">
+      <button 
+        onClick={() => setActiveProject(null)} 
+        className="absolute top-4 right-4 text-white text-xl"
+      >
+        ✕
+      </button>
+
+      <iframe
+        src={activeProject.embedUrl}
+        height="315" 
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowFullScreen
+        referrerpolicy="strict-origin-when-cross-origin" 
+        title={activeProject.title}
+        className="w-full aspect-video rounded-lg mb-4"
+      />
+
+
+      <h3 className="text-white text-2xl font-bold mb-2">{activeProject.title}</h3>
+      <p className="text-purple-400 text-sm mb-1">{activeProject.category}</p>
+      <p className="text-gray-300 text-sm">{activeProject.description}</p>
+    </div>
+  </div>
+)}
+
     </section>
+            </FadeInOnScroll>
   );
 };
 

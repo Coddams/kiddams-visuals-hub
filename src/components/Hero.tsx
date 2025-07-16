@@ -2,11 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import ContactModal from './ContactModal';
+import FadeInOnScroll from "../components/ui/FadeInOnScroll";
 
 const Hero = () => {
   const [currentTypeText, setCurrentTypeText] = useState(0);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const typeTexts = ['Artists', 'Podcasts', 'YouTubers', 'Startups', 'Creators'];
+
+  const [isVisible, setIsVisible] = useState(false);
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // Small delay for smoother animation
+  }, []);
 
   useEffect(() => {
     // Sync with the bounce animation cycle (2 seconds per cycle)
@@ -19,6 +29,7 @@ const Hero = () => {
 
   return (
     <>
+        <FadeInOnScroll direction="bottom">
       <section id="home" className="min-h-screen bg-black relative overflow-hidden flex items-center pt-20">
         {/* Video Background Effect */}
         <div className="absolute inset-0 opacity-20">
@@ -41,7 +52,7 @@ const Hero = () => {
         </div>
 
         {/* Animated background elements */}
-        <div className="absolute inset-0">
+        <div className="hidden md:block absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500/20 rounded-lg rotate-12 animate-pulse"></div>
           <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-purple-600/30 rounded-lg -rotate-12 animate-pulse delay-1000"></div>
           <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-purple-400/15 rounded-lg rotate-45 animate-pulse delay-2000"></div>
@@ -57,9 +68,9 @@ const Hero = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
               <p className="text-purple-400 text-sm font-medium tracking-wider mb-4 animate-fade-in">
-                JOSH KIDDAMS
+                LORDE SALEM
               </p>
-              <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in">
+              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in">
                 PROFESSIONAL
                 <br />
                 <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -120,6 +131,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
+            </FadeInOnScroll>
 
       <ContactModal 
         isOpen={isContactModalOpen}

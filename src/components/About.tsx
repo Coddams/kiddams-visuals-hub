@@ -1,5 +1,6 @@
 
 import React from 'react';
+import FadeInOnScroll from "../components/ui/FadeInOnScroll";
 
 const About = () => {
   const skills = [
@@ -10,6 +11,7 @@ const About = () => {
   ];
 
   return (
+    <FadeInOnScroll direction="bottom">
     <section id="about" className="py-20 bg-black relative">
       {/* Background effects */}
       <div className="absolute inset-0 opacity-10">
@@ -23,9 +25,7 @@ const About = () => {
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-white mb-8 animate-fade-in">ABOUT ME</h2>
             <p className="text-gray-300 text-lg max-w-4xl mx-auto leading-relaxed animate-fade-in">
-              Welcome To The Cinematic Realm Of Salem, Where Creativity Meets Technology To Craft Visually Stunning Narratives. With 
-              A Passion For Storytelling And A Keen Eye For Detail, I Embark On A Journey To Transform Ordinary Footage Into 
-              Extraordinary Visual Experiences.
+              This is my world — where storytelling meets a visual hyperdrive of post-production wizardry. I specialize in turning raw footage into compelling cinematic stories that captivate and connect. With a sharp eye for detail and a passion for powerful visuals, I bring ideas to life with purpose, precision, and creativity.
             </p>
           </div>
 
@@ -44,6 +44,7 @@ const About = () => {
         </div>
       </div>
     </section>
+  </FadeInOnScroll>
   );
 };
 
